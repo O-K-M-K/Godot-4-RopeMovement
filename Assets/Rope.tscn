@@ -19,7 +19,9 @@ process_mode = 4
 visible = false
 
 [node name="RopeStartPiece2" parent="." instance=ExtResource("3_r4jng")]
+freeze = true
 script = null
 
 [node name="RopeEndPiece2" parent="." instance=ExtResource("3_r4jng")]
+freeze = true
 script = null

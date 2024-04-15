@@ -1,0 +1,44 @@
+[gd_scene load_steps=11 format=3 uid="uid://drqjnnshyc0tj"]
+
+[ext_resource type="Texture2D" uid="uid://c88ccnrnlqrae" path="res://PixelArt/bg_sky.png" id="1_8ep1d"]
+[ext_resource type="Texture2D" uid="uid://b4gkwmy4ixcv3" path="res://PixelArt/bg_mountains0.png" id="2_im457"]
+[ext_resource type="Texture2D" uid="uid://b4h17e0qmjiae" path="res://PixelArt/bg_mountains1.png" id="3_ri64i"]
+[ext_resource type="Texture2D" uid="uid://pgcysdwjpb6t" path="res://PixelArt/bg_machines.png" id="4_iot6y"]
+[ext_resource type="Texture2D" uid="uid://cir76r8ija8nj" path="res://PixelArt/front_sky.png" id="5_wcwo4"]
+[ext_resource type="Texture2D" uid="uid://c57um30ieqke7" path="res://PixelArt/bg_parrot.png" id="6_es5s5"]
+[ext_resource type="Texture2D" uid="uid://delfklmxk3ddf" path="res://PixelArt/machines.png" id="7_s47b0"]
+[ext_resource type="Texture2D" uid="uid://ogquonmb2d1" path="res://PixelArt/fg_parrot.png" id="8_2sh0r"]
+[ext_resource type="Texture2D" uid="uid://m1pwlo3epyy0" path="res://PixelArt/smog.png" id="9_u78wj"]
+[ext_resource type="Texture2D" uid="uid://blcel5524al56" path="res://PixelArt/fg_leaves.png" id="10_rrgqa"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="BgSky" type="Sprite2D" parent="."]
+texture = ExtResource("1_8ep1d")
+
+[node name="BgMountains0" type="Sprite2D" parent="."]
+texture = ExtResource("2_im457")
+
+[node name="BgMountains1" type="Sprite2D" parent="."]
+texture = ExtResource("3_ri64i")
+
+[node name="BgMachines" type="Sprite2D" parent="."]
+texture = ExtResource("4_iot6y")
+
+[node name="FrontSky" type="Sprite2D" parent="."]
+texture = ExtResource("5_wcwo4")
+
+[node name="BgParrot" type="Sprite2D" parent="."]
+texture = ExtResource("6_es5s5")
+
+[node name="Machines" type="Sprite2D" parent="."]
+texture = ExtResource("7_s47b0")
+
+[node name="FgParrot" type="Sprite2D" parent="."]
+texture = ExtResource("8_2sh0r")
+
+[node name="Smog" type="Sprite2D" parent="."]
+texture = ExtResource("9_u78wj")
+
+[node name="FgLeaves" type="Sprite2D" parent="."]
+texture = ExtResource("10_rrgqa")

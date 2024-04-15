@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cvboky6pqlyk0"]
+[gd_scene load_steps=9 format=3 uid="uid://cvboky6pqlyk0"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1"]
 [ext_resource type="Script" path="res://Player/Sprite.gd" id="2"]
@@ -48,6 +48,9 @@ _data = {
 "Land": SubResource("4")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_lsb53"]
+radius = 16.0
+
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 z_index = 10
 collision_mask = 14
@@ -91,3 +94,14 @@ polygon = PackedVector2Array(-16, -16, -16, 16, 16, 16, 16, -16)
 libraries = {
 "": SubResource("AnimationLibrary_1lb64")
 }
+
+[node name="RopeDetector" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RopeDetector"]
+position = Vector2(0, 16)
+shape = SubResource("CircleShape2D_lsb53")
+
+[connection signal="body_entered" from="RopeDetector" to="." method="_on_rope_detector_body_entered"]
+[connection signal="body_exited" from="RopeDetector" to="." method="_on_rope_detector_body_exited"]

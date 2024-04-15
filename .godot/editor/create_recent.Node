@@ -1,9 +1,10 @@
-TileMap
+CollisionShape2D
+Area2D
 Node2D
+StaticBody2D
+TileMap
 Node
 Polygon2D
-StaticBody2D
 PinJoint2D
-CollisionShape2D
 RigidBody2D
 AnimatableBody2D

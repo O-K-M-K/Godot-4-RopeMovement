@@ -12,6 +12,8 @@ extends CharacterBody2D
 var face_direction := 1
 var x_dir := 1
 
+@export var mass : float = 10.0
+
 @export var max_speed: float = 560
 @export var acceleration: float = 2880
 @export var turning_acceleration : float = 9600
@@ -37,7 +39,8 @@ var jump_coyote_timer : float = 0
 var jump_buffer_timer : float = 0
 var is_jumping := false
 # ----------------------------------- #
-
+var attached_rope : Object = null
+var attached_rope_part_id : int = -INF
 
 # All iputs we want to keep track of
 func get_input() -> Dictionary:
@@ -155,3 +158,17 @@ func timers(delta: float) -> void:
 	jump_coyote_timer -= delta
 	jump_buffer_timer -= delta
 
+
+
+func _on_rope_detector_body_entered(body: RopePiece) -> void:
+	
+	attached_rope = body.parent
+	attached_rope.player_applied_force = mass * gravity_acceleration/100
+	attached_rope_part_id = body.id
+	attached_rope.active_rope_id = attached_rope_part_id
+
+
+func _on_rope_detector_body_exited(body: RopePiece) -> void:
+	attached_rope = body.parent
+	attached_rope_part_id = -INF
+	attached_rope.active_rope_id = attached_rope_part_id

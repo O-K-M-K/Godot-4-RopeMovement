@@ -1,25 +1,21 @@
-[gd_scene load_steps=16 format=3 uid="uid://cfg4sor4sotk6"]
+[gd_scene load_steps=9 format=3 uid="uid://cfg4sor4sotk6"]
 
 [ext_resource type="Script" path="res://World/World.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://lrbobe03y04y" path="res://ScreenCamera/ScreenCamera.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://cvboky6pqlyk0" path="res://Player/Player.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://dyq8g35t6hsjf" path="res://Platforms/MovingPlatform.tscn" id="5"]
 [ext_resource type="PackedScene" uid="uid://cqindn5hr3fl7" path="res://Platforms/CirclePlatform.tscn" id="6"]
-[ext_resource type="Texture2D" uid="uid://delfklmxk3ddf" path="res://PixelArt/machines.png" id="7_31keg"]
-[ext_resource type="Texture2D" uid="uid://c88ccnrnlqrae" path="res://PixelArt/bg_sky.png" id="7_yfsrp"]
-[ext_resource type="Texture2D" uid="uid://b4gkwmy4ixcv3" path="res://PixelArt/bg_mountains0.png" id="8_ese61"]
-[ext_resource type="Texture2D" uid="uid://b4h17e0qmjiae" path="res://PixelArt/bg_mountains1.png" id="9_o6oru"]
-[ext_resource type="Texture2D" uid="uid://pgcysdwjpb6t" path="res://PixelArt/bg_machines.png" id="10_ceb1p"]
-[ext_resource type="Texture2D" uid="uid://cir76r8ija8nj" path="res://PixelArt/front_sky.png" id="11_qlu3r"]
-[ext_resource type="Texture2D" uid="uid://c57um30ieqke7" path="res://PixelArt/bg_parrot.png" id="12_swern"]
-[ext_resource type="Texture2D" uid="uid://ogquonmb2d1" path="res://PixelArt/fg_parrot.png" id="14_eewx3"]
-[ext_resource type="Texture2D" uid="uid://m1pwlo3epyy0" path="res://PixelArt/smog.png" id="15_tmfyi"]
-[ext_resource type="Texture2D" uid="uid://blcel5524al56" path="res://PixelArt/fg_leaves.png" id="16_eh4gk"]
+[ext_resource type="PackedScene" uid="uid://drqjnnshyc0tj" path="res://World/PixilScene1.tscn" id="6_40msu"]
+[ext_resource type="Script" path="res://World/RopeController.gd" id="7_2xcry"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6muqh"]
+size = Vector2(48, 66)
 
 [node name="World" type="Node2D"]
 script = ExtResource("1")
 
 [node name="Background" type="ColorRect" parent="."]
+visible = false
 offset_left = -1920.0
 offset_top = -480.0
 offset_right = 1920.0
@@ -28,9 +24,14 @@ scale = Vector2(1, 1.6)
 color = Color(0.101961, 0.0901961, 0.286275, 1)
 
 [node name="Player" parent="." instance=ExtResource("4")]
-position = Vector2(-96, -96)
+position = Vector2(-122, 3.00001)
 scale = Vector2(0.199255, 0.199255)
 platform_wall_layers = 2
+max_speed = 0.001
+acceleration = 400.0
+gravity_acceleration = 1000.0
+gravity_max = 500.0
+jump_force = 400.0
 
 [node name="Platforms" type="Node2D" parent="."]
 
@@ -46,38 +47,32 @@ move_to = Vector2(-160, 0)
 position = Vector2(512, 608)
 
 [node name="ScreenCamera" parent="." instance=ExtResource("3")]
-editor_draw_limits = true
-target = NodePath("../Player")
-screen_size = Vector2(256, 256)
+z_index = 2
+script = null
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="PixilScene" parent="." instance=ExtResource("6_40msu")]
 
-[node name="BgSky" type="Sprite2D" parent="Node2D"]
-texture = ExtResource("7_yfsrp")
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(-128, 48)
+collision_layer = 2
 
-[node name="BgMountains0" type="Sprite2D" parent="Node2D"]
-texture = ExtResource("8_ese61")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-1, 1)
+shape = SubResource("RectangleShape2D_6muqh")
 
-[node name="BgMountains1" type="Sprite2D" parent="Node2D"]
-texture = ExtResource("9_o6oru")
+[node name="StaticBody2D" type="StaticBody2D" parent="StaticBody2D"]
+position = Vector2(194, 0)
+collision_layer = 2
 
-[node name="BgMachines" type="Sprite2D" parent="Node2D"]
-texture = ExtResource("10_ceb1p")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/StaticBody2D"]
+position = Vector2(-1, 1)
+shape = SubResource("RectangleShape2D_6muqh")
 
-[node name="FrontSky" type="Sprite2D" parent="Node2D"]
-texture = ExtResource("11_qlu3r")
+[node name="RopeController" type="Node2D" parent="."]
+position = Vector2(-103, 30)
+script = ExtResource("7_2xcry")
 
-[node name="BgParrot" type="Sprite2D" parent="Node2D"]
-texture = ExtResource("12_swern")
+[node name="StartPoint" type="Node2D" parent="RopeController"]
 
-[node name="Machines" type="Sprite2D" parent="Node2D"]
-texture = ExtResource("7_31keg")
-
-[node name="FgParrot" type="Sprite2D" parent="Node2D"]
-texture = ExtResource("14_eewx3")
-
-[node name="Smog" type="Sprite2D" parent="Node2D"]
-texture = ExtResource("15_tmfyi")
-
-[node name="FgLeaves" type="Sprite2D" parent="Node2D"]
-texture = ExtResource("16_eh4gk")
+[node name="EndPoint" type="Node2D" parent="RopeController"]
+position = Vector2(143, 0)

@@ -18,6 +18,8 @@ config/windows_native_icon="res://icon.ico"
 
 [display]
 
+window/size/viewport_width=512
+window/size/viewport_height=256
 window/size/initial_position_type=0
 window/stretch/mode="viewport"
 window/size/fullscreen=true

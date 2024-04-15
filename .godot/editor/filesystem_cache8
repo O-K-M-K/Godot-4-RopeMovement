@@ -1,5 +1,5 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1713141137
+::res://::1713141517
 default_env.tres::::-1::1713017389::0::1::::<><>::
 export_presets.cfg::TextFile::-1::1713017389::0::1::::<><>::
 LICENSE.md::TextFile::-1::1713017389::0::1::::<><>::
@@ -12,10 +12,10 @@ Screenshot2.png::CompressedTexture2D::7567087700406585471::1713017389::171301738
 Screenshot.png::CompressedTexture2D::4957599078126867530::1713017389::1713017389::1::::<><>::
 tilesetBlackSquare.png::CompressedTexture2D::8362014057794280840::1713137845::1713137845::1::::<><>::
 TilesetOf5.png::CompressedTexture2D::8814284451542153271::1713017389::1713017389::1::::<><>::
-::res://Assets/::1713141123
+::res://Assets/::1713141143
 icon_color_outline.png::CompressedTexture2D::676270919486543029::1713017956::1713017959::1::::<><>::
-Rope.tscn::PackedScene::4970505150010320870::1713141123::0::1::::<><>::res://Rope.gd<>uid://ddh3x1gopeca::::res://Assets/rope_end_peice.tscn<>uid://bhp3w7mdftl7f::::res://Assets/RopePiece.tscn
-RopePiece.tscn::PackedScene::2910449318162199225::1713141123::0::1::::<><>::res://Assets/rope_peice.gd
+Rope.tscn::PackedScene::4970505150010320870::1713141143::0::1::::<><>::res://Rope.gd<>uid://ddh3x1gopeca::::res://Assets/rope_end_peice.tscn<>uid://bhp3w7mdftl7f::::res://Assets/RopePiece.tscn
+RopePiece.tscn::PackedScene::2910449318162199225::1713141143::0::1::::<><>::res://Assets/rope_peice.gd
 rope_end_peice.tscn::PackedScene::217235933848862444::1713023761::0::1::::<><>::
 rope_peice.gd::GDScript::-1::1713023405::0::1::::<>RigidBody2D<>::
 ::res://PixelArt/::1713135601
@@ -41,9 +41,9 @@ TileMap.tscn::PackedScene::-1::1713141030::0::1::::<><>::
 Player.gd::GDScript::-1::1713017389::0::1::::<>CharacterBody2D<>::
 Player.tscn::PackedScene::6249740666529434949::1713017389::0::1::::<><>::res://Player/Player.gd<>res://Player/Sprite.gd
 Sprite.gd::GDScript::-1::1713017389::0::1::::<>Node2D<>::
-::res://ScreenCamera/::1713141103
-ScreenCamera.gd::GDScript::-1::1713141103::0::1::::<>Camera2D<>::
+::res://ScreenCamera/::1713141143
+ScreenCamera.gd::GDScript::-1::1713141143::0::1::::<>Camera2D<>::
 ScreenCamera.tscn::PackedScene::807257479821651446::1713017389::0::1::::<><>::res://ScreenCamera/ScreenCamera.gd
-::res://World/::1713141123
+::res://World/::1713141232
 World.gd::GDScript::-1::1713018626::0::1::::<>Node2D<>::
-World.tscn::PackedScene::5137965552112069295::1713141123::0::1::::<><>::res://World/World.gd<>uid://lrbobe03y04y::::res://ScreenCamera/ScreenCamera.tscn<>uid://cvboky6pqlyk0::::res://Player/Player.tscn<>uid://dyq8g35t6hsjf::::res://Platforms/MovingPlatform.tscn<>uid://cqindn5hr3fl7::::res://Platforms/CirclePlatform.tscn<>uid://delfklmxk3ddf::::res://PixelArt/machines.png<>uid://c88ccnrnlqrae::::res://PixelArt/bg_sky.png<>uid://b4gkwmy4ixcv3::::res://PixelArt/bg_mountains0.png<>uid://b4h17e0qmjiae::::res://PixelArt/bg_mountains1.png<>uid://pgcysdwjpb6t::::res://PixelArt/bg_machines.png<>uid://cir76r8ija8nj::::res://PixelArt/front_sky.png<>uid://c57um30ieqke7::::res://PixelArt/bg_parrot.png<>uid://ogquonmb2d1::::res://PixelArt/fg_parrot.png<>uid://m1pwlo3epyy0::::res://PixelArt/smog.png<>uid://blcel5524al56::::res://PixelArt/fg_leaves.png
+World.tscn::PackedScene::5137965552112069295::1713141232::0::1::::<><>::res://World/World.gd<>uid://lrbobe03y04y::::res://ScreenCamera/ScreenCamera.tscn<>uid://cvboky6pqlyk0::::res://Player/Player.tscn<>uid://dyq8g35t6hsjf::::res://Platforms/MovingPlatform.tscn<>uid://cqindn5hr3fl7::::res://Platforms/CirclePlatform.tscn<>uid://delfklmxk3ddf::::res://PixelArt/machines.png<>uid://c88ccnrnlqrae::::res://PixelArt/bg_sky.png<>uid://b4gkwmy4ixcv3::::res://PixelArt/bg_mountains0.png<>uid://b4h17e0qmjiae::::res://PixelArt/bg_mountains1.png<>uid://pgcysdwjpb6t::::res://PixelArt/bg_machines.png<>uid://cir76r8ija8nj::::res://PixelArt/front_sky.png<>uid://c57um30ieqke7::::res://PixelArt/bg_parrot.png<>uid://ogquonmb2d1::::res://PixelArt/fg_parrot.png<>uid://m1pwlo3epyy0::::res://PixelArt/smog.png<>uid://blcel5524al56::::res://PixelArt/fg_leaves.png
