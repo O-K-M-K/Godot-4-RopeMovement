@@ -7,22 +7,18 @@ var rope_close_tolerance := 4.0
 var rope_points : PackedVector2Array = []
 var rope_colors: PackedColorArray = []
 
-var color1 := Color.CORAL
-var color2 := Color.BLACK
+var color1 := Color("#0f1e2b")
 
 @onready var rope_start_piece = $RopeStartPiece2
 @onready var rope_end_piece = $RopeEndPiece2
 @onready var rope_start_joint = $RopeStartPiece2/C/J
 @onready var rope_end_joint = $RopeEndPiece2/C/J
-@onready var rope_start_piece_icon = $RopeStartPiece2/spr
-@onready var rope_end_piece_icon = $RopeEndPiece2/spr
+
 
 
 func _ready():
 	rope_start_piece.set_freeze_enabled(true)
 	rope_end_piece.set_freeze_enabled(true)
-	rope_start_piece_icon.visible = true
-	rope_end_piece_icon.visible = true
 
 func _process(delta: float) -> void:
 	get_rope_points()
@@ -46,10 +42,7 @@ func spawn_rope(start_pos:Vector2, end_pos:Vector2):
 
 func create_rope(pieces_amount:int, parent:Object, end_pos:Vector2, spawn_angle:float) -> void:
 	rope_colors.append(color1)
-	var last_color
 	for i in pieces_amount:
-		last_color = color2 if i % 2 == 0 else color1
-		rope_colors.append(last_color)
 		parent = add_piece(parent, i, spawn_angle)
 		parent.set_name("rope_piece_"+str(i))
 		rope_parts.append(parent)
@@ -57,9 +50,6 @@ func create_rope(pieces_amount:int, parent:Object, end_pos:Vector2, spawn_angle:
 		var joint_pos = parent.get_node("C/J").global_position
 		if joint_pos.distance_to(end_pos) < rope_close_tolerance:
 			break
-	
-	last_color = color1 if last_color == color2 else color2
-	rope_colors.append(last_color)
 	
 	rope_end_joint.node_a = rope_end_piece.get_path()
 	rope_end_joint.node_b = rope_parts[-1].get_path()

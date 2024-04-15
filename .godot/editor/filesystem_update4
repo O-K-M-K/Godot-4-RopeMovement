@@ -1,8 +1,4 @@
-res://World/World.tscn
-res://Assets/rope_peice.tscn
-res://Assets/rope_peice.gd
-res://Rope.gd
 res://Assets/Rope.tscn
-res://World/World.gd
-res://Assets/rope_end_peice.tscn
+res://ScreenCamera/ScreenCamera.gd
 res://Assets/RopePiece.tscn
+res://World/World.tscn
