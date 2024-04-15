@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Assets/rope_peice.gd" id="1_6e3gb"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nqgk8"]
-radius = 2.0
+radius = 0.7
 height = 12.0
 
 [node name="RopePeice" type="RigidBody2D"]
@@ -20,6 +20,7 @@ shape = SubResource("CapsuleShape2D_nqgk8")
 
 [node name="J" type="PinJoint2D" parent="C"]
 position = Vector2(0, 6)
+scale = Vector2(0.65, 0.65)
 bias = 0.245
 softness = 0.1
 

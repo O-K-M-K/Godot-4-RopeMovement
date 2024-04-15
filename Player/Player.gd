@@ -145,6 +145,7 @@ func apply_gravity(delta: float) -> void:
 	if (is_jumping and velocity.y < 0) and velocity.y > jump_gravity_max:
 		applied_gravity = 0
 	
+	
 	# Lower the gravity at the peak of our jump (where velocity is the smallest)
 	if is_jumping and abs(velocity.y) < jump_hang_treshold:
 		applied_gravity *= jump_hang_gravity_mult
@@ -159,16 +160,16 @@ func timers(delta: float) -> void:
 	jump_buffer_timer -= delta
 
 
-
 func _on_rope_detector_body_entered(body: RopePiece) -> void:
-	
 	attached_rope = body.parent
 	attached_rope.player_applied_force = mass * gravity_acceleration/100
 	attached_rope_part_id = body.id
 	attached_rope.active_rope_id = attached_rope_part_id
+	
 
 
 func _on_rope_detector_body_exited(body: RopePiece) -> void:
 	attached_rope = body.parent
-	attached_rope_part_id = -INF
+	attached_rope_part_id = -1
 	attached_rope.active_rope_id = attached_rope_part_id
+	

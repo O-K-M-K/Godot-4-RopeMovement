@@ -48,8 +48,8 @@ _data = {
 "Land": SubResource("4")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_lsb53"]
-radius = 16.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7tcad"]
+size = Vector2(32, 19)
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 z_index = 10
@@ -100,8 +100,8 @@ collision_layer = 2
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RopeDetector"]
-position = Vector2(0, 16)
-shape = SubResource("CircleShape2D_lsb53")
+position = Vector2(0, 15.5)
+shape = SubResource("RectangleShape2D_7tcad")
 
 [connection signal="body_entered" from="RopeDetector" to="." method="_on_rope_detector_body_entered"]
 [connection signal="body_exited" from="RopeDetector" to="." method="_on_rope_detector_body_exited"]

@@ -38,6 +38,7 @@ texture = ExtResource("7_s47b0")
 texture = ExtResource("8_2sh0r")
 
 [node name="Smog" type="Sprite2D" parent="."]
+visible = false
 texture = ExtResource("9_u78wj")
 
 [node name="FgLeaves" type="Sprite2D" parent="."]

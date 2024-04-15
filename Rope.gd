@@ -4,11 +4,12 @@ extends Node2D
 var RopePiece = preload("res://Assets/RopePiece.tscn")
 var piece_length := 12.0
 var rope_parts := []
-var rope_close_tolerance := 4.0
+var rope_parts_dict := {}
+var rope_close_tolerance := 3.0
 var rope_points : PackedVector2Array = []
 var rope_colors: PackedColorArray = []
 
-var active_rope_id := -INF : set = set_active_rope_id
+var active_rope_id := -1 : set = set_active_rope_id
 
 var color1 := Color("#0f1e2b")
 
@@ -22,20 +23,40 @@ var player_applied_force : float
 
 
 func set_active_rope_id(value:int):
+	
 	#i need to make it more efficient - hash table maybe? gotta be better than a list...
 	if active_rope_id != value:
 		active_rope_id = value
-		if active_rope_id == -INF:
+		if active_rope_id == -1:
+			print("deactivating")
 			for i in rope_parts:
 				(i as RigidBody2D).mass = deafult_mass
 		else:
-			for i in len(rope_parts):
-				if i == active_rope_id:
-					(rope_parts[i] as RigidBody2D).mass = player_applied_force
-				else:
-					(rope_parts[i] as RigidBody2D).mass = deafult_mass
+			(rope_parts[active_rope_id] as RigidBody2D).mass = player_applied_force
+			#for i in len(rope_parts):
+				#if i == active_rope_id:
+					#(rope_parts[i] as RigidBody2D).mass = player_applied_force
+				#else:
+					#(rope_parts[i] as RigidBody2D).mass = deafult_mass
+
+func set_active_rope_dict_id(value: int):
+	if active_rope_id != value:
+		active_rope_id = value
+		if active_rope_id == -INF:
+			for i in rope_parts_dict.values():
+				(i as RigidBody2D).mass = deafult_mass
+		else:
+			if active_rope_id < 0:
+				return
+
+				
+			(rope_parts_dict[str(active_rope_id)] as RigidBody2D).mass = player_applied_force * 100
+			for i in rope_parts_dict.keys():
+				if i != str(active_rope_id):
+					(rope_parts_dict[str(active_rope_id)] as RigidBody2D).mass = deafult_mass
 
 func _ready():
+	print("Ready fuction on rope")
 	rope_start_piece.set_freeze_enabled(true)
 	rope_end_piece.set_freeze_enabled(true)
 	#spawn_rope(rope_start_piece.global_position, rope_end_piece.global_position+Vector2(20,0))
@@ -48,6 +69,7 @@ func _process(delta: float) -> void:
 		queue_redraw()
 
 func spawn_rope(start_pos:Vector2, end_pos:Vector2):
+	print("Spawn rope called")
 	rope_start_piece.global_position = start_pos
 	rope_end_piece.global_position = end_pos
 	start_pos = rope_start_joint.global_position
@@ -67,6 +89,7 @@ func create_rope(pieces_amount:int, parent:Object, end_pos:Vector2, spawn_angle:
 		parent = add_piece(parent, i, spawn_angle)
 		parent.set_name("rope_piece_"+str(i))
 		rope_parts.append(parent)
+		rope_parts_dict[str(i)] = parent
 		
 		var joint_pos = parent.get_node("C/J").global_position
 		if joint_pos.distance_to(end_pos) < rope_close_tolerance:
