@@ -21,7 +21,7 @@ shape = SubResource("CapsuleShape2D_nqgk8")
 [node name="J" type="PinJoint2D" parent="C"]
 position = Vector2(0, 6)
 scale = Vector2(0.65, 0.65)
-bias = 0.245
+bias = 0.248
 softness = 0.1
 
 [node name="spr" type="Polygon2D" parent="."]

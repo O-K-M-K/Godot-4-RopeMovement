@@ -12,7 +12,7 @@ extends CharacterBody2D
 var face_direction := 1
 var x_dir := 1
 
-@export var mass : float = 10.0
+@export var mass : float = 8.0
 
 @export var max_speed: float = 560
 @export var acceleration: float = 2880
@@ -162,7 +162,7 @@ func timers(delta: float) -> void:
 
 func _on_rope_detector_body_entered(body: RopePiece) -> void:
 	attached_rope = body.parent
-	attached_rope.player_applied_force = mass * gravity_acceleration/100
+	attached_rope.player_applied_force = mass
 	attached_rope_part_id = body.id
 	attached_rope.active_rope_id = attached_rope_part_id
 	

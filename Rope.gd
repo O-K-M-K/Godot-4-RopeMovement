@@ -28,11 +28,13 @@ func set_active_rope_id(value:int):
 	if active_rope_id != value:
 		active_rope_id = value
 		if active_rope_id == -1:
-			print("deactivating")
 			for i in rope_parts:
 				(i as RigidBody2D).mass = deafult_mass
+				(i as RigidBody2D).gravity_scale = 0.2
 		else:
 			(rope_parts[active_rope_id] as RigidBody2D).mass = player_applied_force
+			#(rope_parts[active_rope_id] as RigidBody2D).gravity_scale = -0.2
+			
 			#for i in len(rope_parts):
 				#if i == active_rope_id:
 					#(rope_parts[i] as RigidBody2D).mass = player_applied_force
@@ -50,7 +52,7 @@ func set_active_rope_dict_id(value: int):
 				return
 
 				
-			(rope_parts_dict[str(active_rope_id)] as RigidBody2D).mass = player_applied_force * 100
+			(rope_parts_dict[str(active_rope_id)] as RigidBody2D).mass += player_applied_force * 100
 			for i in rope_parts_dict.keys():
 				if i != str(active_rope_id):
 					(rope_parts_dict[str(active_rope_id)] as RigidBody2D).mass = deafult_mass

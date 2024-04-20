@@ -19,4 +19,11 @@ func _ready() -> void:
 	await rope.ready
 	rope.spawn_rope(start_pos, end_pos)
 
+func _process(delta: float) -> void:
+	wind()
+
+func wind() -> void:
+	var tween = create_tween()
+	tween.tween_property($EndPoint, "position", Vector2.RIGHT * 1000, 1)
+	#tween.tween_property($EndPoint, "position", Vector2.LEFT * 100, 1).as_relative()
 

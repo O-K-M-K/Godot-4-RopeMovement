@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cfg4sor4sotk6"]
+[gd_scene load_steps=17 format=3 uid="uid://cfg4sor4sotk6"]
 
 [ext_resource type="Script" path="res://World/World.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://lrbobe03y04y" path="res://ScreenCamera/ScreenCamera.tscn" id="3"]
@@ -8,9 +8,62 @@
 [ext_resource type="PackedScene" uid="uid://drqjnnshyc0tj" path="res://World/PixilScene1.tscn" id="6_40msu"]
 [ext_resource type="Script" path="res://World/RopeController.gd" id="7_2xcry"]
 [ext_resource type="PackedScene" uid="uid://dec1ws0mp6jwo" path="res://Assets/SmokeParticles.tscn" id="8_hembm"]
+[ext_resource type="Texture2D" uid="uid://b8x3rv8tdlcbm" path="res://Art/Circle.png" id="9_mnv2j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6muqh"]
 size = Vector2(48, 66)
+
+[sub_resource type="Environment" id="Environment_hrsw6"]
+background_mode = 3
+tonemap_mode = 3
+tonemap_white = 4.9
+glow_levels/2 = 2.55
+glow_normalized = true
+glow_intensity = 8.0
+glow_strength = 2.0
+glow_blend_mode = 1
+glow_hdr_threshold = 0.9
+volumetric_fog_density = 0.4644
+volumetric_fog_albedo = Color(0.780392, 0.52549, 0.835294, 1)
+volumetric_fog_emission = Color(0.54902, 0.419608, 0.486275, 1)
+volumetric_fog_emission_energy = 499.05
+volumetric_fog_gi_inject = 4.78
+volumetric_fog_length = 32.12
+volumetric_fog_ambient_inject = 4.7
+
+[sub_resource type="Curve" id="Curve_eh365"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0685654, 1), 0.0, 0.0, 0, 0, Vector2(0.862869, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_ie1t7"]
+curve = SubResource("Curve_eh365")
+
+[sub_resource type="Curve" id="Curve_50trr"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.120253, 1), 0.0, 0.0, 0, 0, Vector2(0.896625, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_abpq0"]
+curve = SubResource("Curve_50trr")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yualr"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(300, 150, 1)
+angle_min = -720.0
+angle_max = 720.0
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_max = 20.0
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -19.35
+radial_accel_max = 16.94
+tangential_accel_min = 1.0
+tangential_accel_max = 33.06
+scale_min = 0.0
+scale_max = 0.01
+scale_curve = SubResource("CurveTexture_abpq0")
+color = Color(1.5, 1.5, 1.5, 0.514)
+alpha_curve = SubResource("CurveTexture_ie1t7")
 
 [node name="World" type="Node2D"]
 script = ExtResource("1")
@@ -52,6 +105,7 @@ z_index = 2
 script = null
 
 [node name="PixilScene" parent="." instance=ExtResource("6_40msu")]
+modulate = Color(0.580392, 0.580392, 0.65098, 1)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(-128, 48)
@@ -60,6 +114,7 @@ collision_layer = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(-1, 1)
 shape = SubResource("RectangleShape2D_6muqh")
+debug_color = Color(0, 0.6, 0.701961, 0)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="StaticBody2D"]
 position = Vector2(194, 0)
@@ -83,3 +138,32 @@ position = Vector2(-116, 5)
 
 [node name="GPUParticles2D2" parent="." instance=ExtResource("8_hembm")]
 position = Vector2(78, 8)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_hrsw6")
+
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="."]
+modulate = Color(1.5, 1.5, 1.5, 1)
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_yualr")
+texture = ExtResource("9_mnv2j")
+speed_scale = 0.2
+randomness = 1.0
+
+[node name="RopeController2" type="Node2D" parent="."]
+position = Vector2(90, 23)
+script = ExtResource("7_2xcry")
+
+[node name="StartPoint" type="Node2D" parent="RopeController2"]
+
+[node name="EndPoint" type="Node2D" parent="RopeController2"]
+position = Vector2(139, -1)
+
+[node name="RopeController3" type="Node2D" parent="."]
+position = Vector2(-154, 25)
+script = ExtResource("7_2xcry")
+
+[node name="StartPoint" type="Node2D" parent="RopeController3"]
+
+[node name="EndPoint" type="Node2D" parent="RopeController3"]
+position = Vector2(-4, 19)

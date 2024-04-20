@@ -1,8 +1,10 @@
-res://ScreenCamera/ScreenCamera.gd
-res://Assets/SmokeParticles.tscn
-res://World/World.tscn
 res://Assets/Rope.tscn
+res://ScreenCamera/ScreenCamera.gd
+res://Rope.gd
 res://Assets/RopePiece.tscn
 res://Player/Player.tscn
 res://ScreenCamera/ScreenCamera.tscn
+res://World/World.tscn
+res://Assets/SmokeParticles.tscn
 res://World/PixilScene1.tscn
+res://World/RopeController.gd
