@@ -1,10 +1,13 @@
-res://Assets/Rope.tscn
+res://World/World.tscn
 res://ScreenCamera/ScreenCamera.gd
-res://Rope.gd
+res://Assets/Rope.tscn
 res://Assets/RopePiece.tscn
 res://Player/Player.tscn
 res://ScreenCamera/ScreenCamera.tscn
-res://World/World.tscn
 res://Assets/SmokeParticles.tscn
 res://World/PixilScene1.tscn
-res://World/RopeController.gd
+res://Assets/HangingRope.tscn
+res://BirdController.gd
+res://Player/Player.gd
+res://Assets/Bird.tscn
+res://Rope.gd

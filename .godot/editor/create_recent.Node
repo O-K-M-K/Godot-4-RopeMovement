@@ -1,3 +1,7 @@
+CharacterBody2D
+CollisionShape2D
+AnimationPlayer
+Area2D
 DampedSpringJoint2D
 GPUParticles2D
 Sprite2D
@@ -6,9 +10,6 @@ OmniLight3D
 PointLight2D
 Node2D
 WorldEnvironment
-CollisionShape2D
-Area2D
 StaticBody2D
 TileMap
 Node
-Polygon2D

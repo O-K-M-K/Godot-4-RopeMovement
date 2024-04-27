@@ -3,14 +3,13 @@
 [ext_resource type="Script" path="res://Assets/rope_peice.gd" id="1_6e3gb"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nqgk8"]
-radius = 0.7
-height = 12.0
+radius = 0.6
+height = 15.0
 
 [node name="RopePeice" type="RigidBody2D"]
 collision_layer = 4
 collision_mask = 0
-gravity_scale = 0.02
-linear_damp = 0.2
+gravity_scale = 0.2
 angular_damp = 1.0
 script = ExtResource("1_6e3gb")
 
@@ -21,9 +20,11 @@ shape = SubResource("CapsuleShape2D_nqgk8")
 [node name="J" type="PinJoint2D" parent="C"]
 position = Vector2(0, 6)
 scale = Vector2(0.65, 0.65)
-bias = 0.248
+bias = 0.1
 softness = 0.1
 
 [node name="spr" type="Polygon2D" parent="."]
 visible = false
+position = Vector2(0, 9)
+scale = Vector2(0.25, 0.25)
 polygon = PackedVector2Array(-6, 12, 0, 6, 6, 12, 0, 18)

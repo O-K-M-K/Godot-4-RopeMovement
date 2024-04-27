@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cfg4sor4sotk6"]
+[gd_scene load_steps=19 format=3 uid="uid://cfg4sor4sotk6"]
 
 [ext_resource type="Script" path="res://World/World.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://lrbobe03y04y" path="res://ScreenCamera/ScreenCamera.tscn" id="3"]
@@ -9,9 +9,8 @@
 [ext_resource type="Script" path="res://World/RopeController.gd" id="7_2xcry"]
 [ext_resource type="PackedScene" uid="uid://dec1ws0mp6jwo" path="res://Assets/SmokeParticles.tscn" id="8_hembm"]
 [ext_resource type="Texture2D" uid="uid://b8x3rv8tdlcbm" path="res://Art/Circle.png" id="9_mnv2j"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6muqh"]
-size = Vector2(48, 66)
+[ext_resource type="Script" path="res://World/HangingRopeController.gd" id="10_7x1ln"]
+[ext_resource type="PackedScene" uid="uid://bspd3k0xxaspe" path="res://Assets/Bird.tscn" id="11_n52fj"]
 
 [sub_resource type="Environment" id="Environment_hrsw6"]
 background_mode = 3
@@ -30,6 +29,9 @@ volumetric_fog_emission_energy = 499.05
 volumetric_fog_gi_inject = 4.78
 volumetric_fog_length = 32.12
 volumetric_fog_ambient_inject = 4.7
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6muqh"]
+size = Vector2(48, 66)
 
 [sub_resource type="Curve" id="Curve_eh365"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0685654, 1), 0.0, 0.0, 0, 0, Vector2(0.862869, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -68,6 +70,9 @@ alpha_curve = SubResource("CurveTexture_ie1t7")
 [node name="World" type="Node2D"]
 script = ExtResource("1")
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_hrsw6")
+
 [node name="Background" type="ColorRect" parent="."]
 visible = false
 offset_left = -1920.0
@@ -78,7 +83,7 @@ scale = Vector2(1, 1.6)
 color = Color(0.101961, 0.0901961, 0.286275, 1)
 
 [node name="Player" parent="." instance=ExtResource("4")]
-position = Vector2(-122, 3.00001)
+position = Vector2(-112, 3)
 scale = Vector2(0.199255, 0.199255)
 platform_wall_layers = 2
 max_speed = 0.001
@@ -139,9 +144,6 @@ position = Vector2(-116, 5)
 [node name="GPUParticles2D2" parent="." instance=ExtResource("8_hembm")]
 position = Vector2(78, 8)
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_hrsw6")
-
 [node name="GPUParticles2D3" type="GPUParticles2D" parent="."]
 modulate = Color(1.5, 1.5, 1.5, 1)
 amount = 50
@@ -159,11 +161,26 @@ script = ExtResource("7_2xcry")
 [node name="EndPoint" type="Node2D" parent="RopeController2"]
 position = Vector2(139, -1)
 
-[node name="RopeController3" type="Node2D" parent="."]
-position = Vector2(-154, 25)
-script = ExtResource("7_2xcry")
+[node name="HangingRopeController" type="Node2D" parent="."]
+position = Vector2(-156, 26)
+script = ExtResource("10_7x1ln")
 
-[node name="StartPoint" type="Node2D" parent="RopeController3"]
+[node name="StartPoint" type="Node2D" parent="HangingRopeController"]
 
-[node name="EndPoint" type="Node2D" parent="RopeController3"]
-position = Vector2(-4, 19)
+[node name="EndPoint" type="Node2D" parent="HangingRopeController"]
+position = Vector2(0, 21)
+
+[node name="Birb" parent="." instance=ExtResource("11_n52fj")]
+position = Vector2(-146, 15)
+velocity = Vector2(0, 1860)
+flipped = false
+
+[node name="Birb2" parent="." instance=ExtResource("11_n52fj")]
+position = Vector2(30, 18)
+velocity = Vector2(0, 1860)
+flipped = false
+
+[node name="Birb3" parent="." instance=ExtResource("11_n52fj")]
+position = Vector2(-85, 15)
+velocity = Vector2(0, 1860)
+flipped = true

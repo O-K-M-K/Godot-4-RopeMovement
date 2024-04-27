@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Player
 ## This character controller was created with the intent of being a decent starting point for Platformers.
 ## 
 ## Instead of teaching the basics, I tried to implement more advanced considerations.

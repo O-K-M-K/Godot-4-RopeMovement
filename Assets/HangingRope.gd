@@ -2,18 +2,18 @@
 extends Node2D
 
 var RopePiece = preload("res://Assets/RopePiece.tscn")
-var piece_length := 12.0
+@export var piece_length := 22.0
 var rope_parts := []
 var rope_parts_dict := {}
-var rope_close_tolerance := 0.0
+@export var rope_close_tolerance := 2.0
 var rope_points : PackedVector2Array = []
 var rope_colors: PackedColorArray = []
 
-var active_rope_id := -1 : set = set_active_rope_dict_id
+var active_rope_id := -1 : set = set_active_rope_id
 
 var color1 := Color("#0f1e2b")
 
-@export var deafult_mass : float = 1.0
+@export var deafult_mass : float = 0
 var player_applied_force : float
 
 @onready var rope_start_piece = $RopeStartPiece2
@@ -42,74 +42,53 @@ func set_active_rope_id(value:int):
 					(rope_parts[i] as RigidBody2D).mass = deafult_mass
 
 func set_active_rope_dict_id(value: int):
-	print("setting mass")
 	if active_rope_id != value:
 		active_rope_id = value
-		if active_rope_id == -1:
+		if active_rope_id == -INF:
 			for i in rope_parts_dict.values():
 				(i as RigidBody2D).mass = deafult_mass
-				(rope_parts[active_rope_id] as RigidBody2D).gravity_scale = 0.2
 		else:
-			(rope_parts_dict[str(active_rope_id)] as RigidBody2D).mass = player_applied_force 
-			
+			if active_rope_id < 0:
+				return
+
+				
+			(rope_parts_dict[str(active_rope_id)] as RigidBody2D).mass += player_applied_force * 100
 			for i in rope_parts_dict.keys():
 				if i != str(active_rope_id):
-					(rope_parts_dict[i] as RigidBody2D).gravity_scale = 0.2
-					var temp_mass = (rope_parts_dict[i] as RigidBody2D).mass
-					if temp_mass != deafult_mass:
-						temp_mass = deafult_mass
+					(rope_parts_dict[str(active_rope_id)] as RigidBody2D).mass = deafult_mass
 
 func _ready():
 	rope_start_piece.set_freeze_enabled(true)
-	rope_end_piece.set_freeze_enabled(true)
+	rope_end_piece.set_freeze_enabled(false)
 	
+@onready var tween = create_tween()
+var rope_end_pos = null
 
-var current_depth := 0.0
-var max_depth := 0.0
-var reached_max_depth := false
-func has_reached_max_depth():
-	if active_rope_id != -1:
-		current_depth = (rope_parts_dict[str(active_rope_id)] as RigidBody2D).global_position.y
-		
-		if current_depth > max_depth:
-			max_depth = current_depth
-		elif current_depth < max_depth:
-			reached_max_depth = true
-	else:
-		reached_max_depth = false
-		current_depth = 0.0
-		max_depth = 0.0
-	
-
-func reset_masses():
-	if active_rope_id != -1 and (rope_parts_dict[str(active_rope_id)] as RigidBody2D).gravity_scale > 0:
-		#print("removing gravity")
-		(rope_parts_dict[str(active_rope_id)] as RigidBody2D).gravity_scale -= 0.01
-	elif active_rope_id != -1:
-		pass
-		#print("adding gravity")
-		#(rope_parts_dict[str(active_rope_id)] as RigidBody2D).gravity_scale += 0.01
-		
 
 func _process(delta: float) -> void:
-	has_reached_max_depth()
-	reset_masses()
+	#await create_tween().tween_interval(2).finished
+	#tween.tween_property($RopeEndPiece2, "position", rope_end_pos - Vector2(20, 0), 5)
+	#tween.tween_property($RopeEndPiece2, "position", rope_end_pos + Vector2(-20, 0), 1)
+	#rope_end_piece
 	get_rope_points()
 	if !rope_points.is_empty():
 		queue_redraw()
+	#tween.tween_property($RopeEndPiece2, "position", Vector2(-146, 59), 1)
+	
 
 func spawn_rope(start_pos:Vector2, end_pos:Vector2):
 	print("Spawn rope called")
+	
 	rope_start_piece.global_position = start_pos
 	rope_end_piece.global_position = end_pos
 	start_pos = rope_start_joint.global_position
 	end_pos = rope_end_joint.global_position
-	
 	var distance = start_pos.distance_to(end_pos)
 	var pieces_ammount = round(distance/piece_length)
 	var spawn_angle = (end_pos-start_pos).angle() - PI/2
 	
 	create_rope(pieces_ammount, rope_start_piece, end_pos, spawn_angle)
+	print(rope_parts_dict)
 	
 
 
